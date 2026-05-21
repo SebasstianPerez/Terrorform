@@ -24,7 +24,7 @@ resource "aws_launch_template" "AC2-lt" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "AC2-ec2-asg"
+      Name = "AC2-ec2-asg-vfinal"
       ASG  = "true"
     }
   }
