@@ -40,7 +40,7 @@ resource "aws_autoscaling_group" "AC2-asg" {
 
   launch_template {
     id      = aws_launch_template.AC2-lt.id
-    version = "$Latest"
+    version = aws_launch_template.AC2-lt.latest_version
   }
 
   depends_on = [
