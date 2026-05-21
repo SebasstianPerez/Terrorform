@@ -1,6 +1,6 @@
 resource "aws_launch_template" "AC2-lt" {
   name_prefix   = "AC2-lt-"
-  image_id      = "ami-0a59ec92177ec3fad"
+  image_id      = "ami-0236922087fa98b6e"
   instance_type = "t3.micro"
   key_name      = "vockey"
 
