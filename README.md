@@ -1,4 +1,7 @@
-# Actuación en clase - Terraform y GitHub Actions (DEMO)
+# Actuación en clase - Terraform y GitHub Actions
+
+> **¿Por qué "Terrorform"?**
+> No es un typo. Es una advertencia. Este repositorio simula el escenario clásico de heredar infraestructura rota: errores sutiles en Terraform y en el pipeline de CI/CD que hacen que nada funcione. Tu misión: convertir el _terror_ en Terraform.
 
 ## Objetivo
 
@@ -16,41 +19,6 @@ Internet → IGW → ALB (subnets públicas) → EC2 vía ASG (subnets privadas)
                                            NAT Gateway (subnet pública)
 ```
 
-## Problemas a resolver
-
-El pipeline y la infraestructura tienen los siguientes componentes con errores:
-
-### 1. CI/CD (GitHub Actions)
-
-- [  ] Versión de la action `checkout` incorrecta
-- [  ] Falta el paso de validación de Terraform entre `init` y `plan`
-- [  ] Nombre del output incorrecto en el paso "Show ALB URL"
-
-### 2. Provider
-
-- [  ] Versión del provider de AWS no existe
-
-### 3. Networking
-
-- [  ] NAT Gateway asociado a una subnet incorrecta
-
-### 4. Security Groups
-
-- [  ] Security Group de las instancias EC2 permite tráfico desde internet en lugar del ALB
-
-### 5. EC2 / Auto Scaling
-
-- [  ] ASG despliega las instancias en las subnets incorrectas
-- [  ] Las instancias tienen IP pública habilitada cuando no deberían
-
-### 6. ALB
-
-- [  ] El ALB está asociado a las subnets incorrectas
-
-### 7. Outputs
-
-- [  ] El nombre del output no coincide con el referenciado en el workflow
-
 ## Estructura del repositorio
 
 ```
@@ -67,7 +35,6 @@ El pipeline y la infraestructura tienen los siguientes componentes con errores:
 └── README.md               # Este archivo
 ```
 
-> **Nota:** el archivo `user_data.sh` no debe modificarse. Los demás archivos deben corregirse para que la infraestructura funcione correctamente.
 
 ## Recursos desplegados
 
@@ -89,19 +56,7 @@ Tu solución se evaluará según los siguientes criterios:
 3. La infraestructura se despliega correctamente en AWS
 4. El ALB responde con HTTP 200 desde internet
 5. Las instancias EC2 solo reciben tráfico desde el ALB (no desde internet directamente)
-6. El flow implementa las prácticas de seguridad requeridas
 
-Recibirás puntos por cada problema que identifiques y corrijas correctamente.
-
-## Secrets requeridos
-
-El repositorio requiere los siguientes secrets configurados en GitHub:
-
-| Secret | Descripción |
-|--------|-------------|
-| `AWS_ACCESS_KEY_ID` | Access Key de AWS |
-| `AWS_SECRET_ACCESS_KEY` | Secret Access Key de AWS |
-| `AWS_SESSION_TOKEN` | Session Token de AWS (si aplica) |
 
 ## Definición de terminado
 
@@ -109,10 +64,9 @@ El resultado debe ser la visualización del sitio web accediendo desde la URL de
 
 ## Entrega
 
-1. Clona el repositorio generado
-2. Identifica y corrige todos los problemas en los archivos del repo
-3. Haz commit y push de tus cambios
-4. Verifica que el pipeline funcione correctamente en la pestaña "Actions"
-5. Confirma que el ALB URL impreso en el summary responde correctamente
+1. Identifica y corrige todos los problemas en los archivos del repo
+2. Haz commit y push de tus cambios
+3. Verifica que el pipeline funcione correctamente en la pestaña "Actions"
+4. Confirma que el ALB URL impreso en el summary responde correctamente
 
 ¡Buena suerte!
