@@ -4,6 +4,10 @@ resource "aws_launch_template" "AC2-lt" {
   instance_type = "t3.micro"
   key_name      = "vockey"
 
+  iam_instance_profile {
+    name = "LabInstanceProfile"
+  }
+
   user_data = filebase64("${path.module}/user_data.sh")
 
   metadata_options {
