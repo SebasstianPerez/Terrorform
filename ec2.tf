@@ -6,6 +6,12 @@ resource "aws_launch_template" "AC2-lt" {
 
   user_data = filebase64("${path.module}/user_data.sh")
 
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 2
+  }
+
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.AC2-sg-ec2.id]
